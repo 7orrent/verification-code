@@ -25,6 +25,8 @@ module.exports = {
         conn.query(`SELECT * FROM verificationcodes WHERE discordid = ${member.user.id}`, function(error, results, fields) {
             if (error) throw error;
 
+            console.log(results[0])
+
             if (results[0].length !== 0) return message.channel.send("`User is already bound to a code.`");
 
 
