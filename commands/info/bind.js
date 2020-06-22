@@ -29,7 +29,9 @@ module.exports = {
         if (bindUserId.length < 18) return message.channel.send("\`The provided userid doesn't meet the requirements.\`").then(m => {m.delete({ timeout: 5000})}).catch(console.error);
         const wordArray = [`"`, "`", "'"];
 
-        if (bindName.content.includes(wordArray)) return;
+        wordArray.forEach(word => {
+            if (bindName.content.includes(item)) return;
+        });
 
         let userCode = generateCode()
 
