@@ -77,4 +77,11 @@ client.on("message", async message => {
         command.run(client, message, args, conn);
 });
 
+client.on("guildMemberAdd", member => {
+    console.log("User" + member.user.tag + " has joined the server!");
+
+    var role = member.guild.roles.find("name", "Outsiders");
+    member.roles.add(role);
+})
+
 client.login(process.env.TOKEN);
