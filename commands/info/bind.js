@@ -28,7 +28,7 @@ module.exports = {
         let userCode = generateCode()
 
         conn.query(`INSERT INTO verificationcodes(\`name\`,\`code\`,\`discordid\`) VALUES("${bindName}", ${userCode}, ${bindUserId})`);
-        message.channel.send("`User has been binded, dm'ing you their verification code.`");
+        message.channel.send("`User has been binded, dm'ing you their verification code.`").then(m => {m.delete({ timeout: 5000})}).catch(console.error);
         member.send(`\`User's verification code is: ${userCode}\``);
     }
 }
