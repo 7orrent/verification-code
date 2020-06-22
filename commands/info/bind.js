@@ -25,7 +25,7 @@ module.exports = {
         let bindName = args[1]
         let bindUserId = args[0]
 
-        if (isNaN(bindUserId)) return message.channel.send("\`The provided userid was not a valid number\`");
+        if (isNaN(bindUserId)) return message.channel.send("\`The provided userid was not a valid number\`").then(m => {m.delete({ timeout: 5000})}).catch(console.error);
 
         let userCode = generateCode()
 
