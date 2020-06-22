@@ -1,12 +1,5 @@
 const { MessageEmbed } = require("discord.js");
 
-function generateCode() {
-    let min = 100000000
-    let max = 500000000
-
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
 module.exports = {
     name: "verify",
     aliases: ["identify", "confirmidentity"],
@@ -21,7 +14,7 @@ module.exports = {
 
         if (!member.roles.cache.find(r => r.name === "Outsiders")) return message.channel.send("\`You're already verified!\`").then(msg => {msg.delete({ timeout: 5000 })}).catch(console.error);
 
-        if (args.length === 0) return message.channel.send("\`Please provide a valid code.\`").then(msg => {msg.delete({ timeout: 5000 })}).catch(console.error);
+        if (args.length === 0) return message.channel.send("\`Invalid Arguements.\`").then(msg => {msg.delete({ timeout: 5000 })}).catch(console.error);
 
         conn.query(`SELECT * FROM verificationcodes WHERE discordid = ${member.user.id}`, function(error, results, fields) {
             if (error) throw error;
