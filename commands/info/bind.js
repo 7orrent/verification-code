@@ -27,11 +27,13 @@ module.exports = {
 
         if (isNaN(bindUserId)) return message.channel.send("\`The provided userid was not a valid number\`").then(m => {m.delete({ timeout: 5000})}).catch(console.error);
         if (bindUserId.length < 18) return message.channel.send("\`The provided userid doesn't meet the requirements.\`").then(m => {m.delete({ timeout: 5000})}).catch(console.error);
-        const wordArray = [`"`, "`", "'"];
+        
+        const quoteArray = [`"`,"`",`'`];
+        for (let i=0; i <quoteArray.length;i++) {
+            const elem = quoteArray[i]
 
-        wordArray.forEach(word => {
-            if (bindName.content.includes(item)) return;
-        });
+            if (bindName.includes(elem)) return console.log("User: " + member.user.username + " entered an invalid piece of text.")
+        }
 
         let userCode = generateCode()
 
