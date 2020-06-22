@@ -28,14 +28,14 @@ module.exports = {
         if (isNaN(bindUserId)) return message.channel.send("\`The provided userid was not a valid number\`").then(m => {m.delete({ timeout: 5000})}).catch(console.error);
         if (bindUserId.length < 18) return message.channel.send("\`The provided userid doesn't meet the requirements.\`").then(m => {m.delete({ timeout: 5000})}).catch(console.error);
 
-        if (bindName.length === 0) return message.channel.send("`Please provide a valid name.`")
-        if (bindName.length > 255) return message.channel.send("`Name is invalid, must be under the length of 255.`")
+        if (bindName.length === 0) return message.channel.send("`Please provide a valid name.`").then(m => {m.delete({ timeout: 5000})}).catch(console.error);
+        if (bindName.length > 255) return message.channel.send("`Name is invalid, must be under the length of 255.`").then(m => {m.delete({ timeout: 5000})}).catch(console.error);
         
         const quoteArray = [`"`,"`",`'`];
         for (let i=0; i <quoteArray.length;i++) {
             const elem = quoteArray[i]
 
-            if (bindName.includes(elem)) return console.log("User: " + member.user.username + " entered an invalid piece of text.")
+            if (bindName.includes(elem)) return message.channel.send(`\`Invalid text component used: ${elem}\``).then(m => {m.delete({ timeout: 5000})}).catch(console.error);
         }
 
         let userCode = generateCode()
