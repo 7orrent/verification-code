@@ -1,16 +1,9 @@
 const { MessageEmbed } = require("discord.js");
 
-function generateCode() {
-    let min = 100000000
-    let max = 500000000
-
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
 module.exports = {
-    name: "bind",
+    name: "unbind",
     category: "info",
-    description: "Binds a user to a code.",
+    description: "Unbinds a user from their code.",
     run: (client, message, args, conn) => {
 
         message.delete();
@@ -22,13 +15,10 @@ module.exports = {
 
         if (args.length === 0) return message.channel.send("\`Invalid Arguements.\`").then(msg => {msg.delete({ timeout: 5000 })}).catch(console.error);
 
-        let bindName = args[1]
         let bindUserId = args[0] 
 
-        let userCode = generateCode()
 
-        conn.query(`INSERT INTO verificationcodes(\`name\`,\`code\`,\`discordid\`) VALUES("${bindName}", ${userCode}, ${bindUserId})`);
-        message.channel.send("`User has been binded, dm'ing you their verification code.`").then(m => {m.delete({ timeout: 5000})}).catch(console.error);
-        member.send(`\`${bindName}'s verification code is: ${userCode}\``);
+        conn.query(`DELETE FROM verificationcodes WHERE discordid = ${bindUserId}`);
+        message.channel.send("`User has been unbinded.`").then(m => {m.delete({ timeout: 5000})}).catch(console.error);
     }
 }
