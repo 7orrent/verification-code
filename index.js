@@ -80,8 +80,8 @@ client.on("message", async message => {
 client.on("guildMemberAdd", member => {
     console.log("User" + member.user.tag + " has joined the server!");
 
-    var role = member.guild.roles.find("name", "Outsiders");
-    member.roles.add(role);
+    member.roles.add("724353377466581022");
+
 })
 
 client.login(process.env.TOKEN);
