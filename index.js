@@ -78,7 +78,7 @@ client.on("message", async message => {
 });
 
 client.on("guildMemberAdd", member => {
-    console.log("User" + member.user.tag + " has joined the server!");
+    console.log("User " + member.user.tag + " has joined the server!");
 
     member.roles.add("724353377466581022");
 
