@@ -22,11 +22,6 @@ module.exports = {
 
         if (args.length === 0) return message.channel.send("\`Invalid Arguements.\`").then(msg => {msg.delete({ timeout: 5000 })}).catch(console.error);
 
-
-
-        if (results[0].length !== 0) return message.channel.send("`User is already bound to a code.`");
-
-
         let bindName = args[1]
         let bindUserId = args[0]
 
